@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const names = [
-    "OmoPay",
+    "SIRRAMENBOI",
   ];
   let name = names[Math.floor(Math.random() * names.length)];
   let nameText = '';
@@ -475,6 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   typeWriterStart();
 });
+
 
 
 
