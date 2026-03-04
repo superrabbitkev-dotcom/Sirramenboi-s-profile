@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 
-  const startMessages = ["Click here to see the motion baby"];
+  const startMessages = ["Click here to see the Website!"];
   const startMessage = startMessages[Math.floor(Math.random() * startMessages.length)];
   let startTextContent = '';
   let startIndex = 0;
@@ -199,13 +199,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
    const bioMessages = [
-    "A person who enjoys the internet",
+    "Shadow Milk Cookie <3",
     
-    "Live's in the Milky Way Galaxy",
+    "I love developing in Python, CSS, and JavaScript",
     
-    "Live's on the planet Earth",
+    "I Love playing CRK (CookieRun: Kingdom",
     
-    "Enjoys developing stupid sh*t",
+    "We do not lick the dog",
     
     "I am a person :)",
   ];
@@ -475,6 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   typeWriterStart();
 });
+
 
 
 
