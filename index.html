@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body class="home-theme">
-
     <div class="custom-cursor"></div>
     <div class="glitch-overlay"></div>
 
@@ -22,53 +21,50 @@
         <p id="results-hint" class="hidden">Click again to return to profile</p>
     </div>
 
-    <main class="content-wrapper">
+    <div id="profile-block" class="glass-panel">
+        <div class="profile-container">
+            <img src="assets/profile.png" class="profile-picture" alt="Profile">
+        </div>
+        <h1 id="profile-name" class="name-gradient"></h1>
         
-        <div id="profile-block" class="glass-panel">
-            <div class="profile-container">
-                <img src="assets/profile.png" class="profile-picture" alt="JAQLIV">
-            </div>
-            
-            <h1 id="profile-name" class="name-gradient"></h1>
-            <p id="profile-bio"></p>
-
-            <div class="badge-group">
-                <div class="badge-container"><img src="assets/staff.png" class="badge" title="Staff"></div>
-                <div class="badge-container"><img src="assets/owner.png" class="badge" title="Owner"></div>
-                </div>
-
-            <hr class="separator">
-
-            <div class="social-links">
-                <a href="#" class="social-icon"><img src="assets/discord.png" alt="Discord"></a>
-                <a href="#" class="social-icon"><img src="assets/github.png" alt="GitHub"></a>
-            </div>
-
-            <div class="visitor-counter">
-                <svg class="visitor-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                <span id="visitor-count">0</span>
-            </div>
+        <div class="badge-group">
+            <div class="badge-container"><img src="assets/staff.png" class="badge"></div>
+            <div class="badge-container"><img src="assets/owner.png" class="badge"></div>
+            <div class="badge-container"><img src="assets/partner.png" class="badge"></div>
+            <div class="badge-container"><img src="assets/developer.png" class="badge"></div>
         </div>
 
-        <div id="skills-block" class="glass-panel hidden">
-            <h2 class="skill-title">Programming Skills</h2>
-            
-            <div class="skill-item">
-                <div class="skill-info"><span>Python</span><span>87%</span></div>
-                <div class="progress-bg"><div id="python-bar" class="skill-bar" style="width: 0%"></div></div>
-            </div>
+        <p id="profile-bio"></p>
 
-            <div class="skill-item">
-                <div class="skill-info"><span>C++</span><span>75%</span></div>
-                <div class="progress-bg"><div id="cpp-bar" class="skill-bar" style="width: 0%"></div></div>
-            </div>
+        <hr class="separator">
 
-            <div class="skill-item">
-                <div class="skill-info"><span>C#</span><span>80%</span></div>
-                <div class="progress-bg"><div id="csharp-bar" class="skill-bar" style="width: 0%"></div></div>
-            </div>
+        <div class="social-links">
+            <a href="#" class="social-icon"><img src="assets/discord.png"></a>
+            <a href="#" class="social-icon"><img src="assets/github.png"></a>
+            <a href="#" class="social-icon"><img src="assets/youtube.png"></a>
+            <a href="#" class="social-icon"><img src="assets/tiktok.png"></a>
         </div>
-    </main>
+
+        <div class="visitor-counter">
+            <span id="visitor-count">0</span>
+        </div>
+    </div>
+
+    <div id="skills-block" class="glass-panel hidden">
+        <h2 class="skill-title">Programming Skills</h2>
+        <div class="skill-item">
+            <div class="skill-info"><span>Python</span><span>87%</span></div>
+            <div class="progress-bg"><div id="python-bar" class="skill-bar"></div></div>
+        </div>
+        <div class="skill-item">
+            <div class="skill-info"><span>C++</span><span>75%</span></div>
+            <div class="progress-bg"><div id="cpp-bar" class="skill-bar"></div></div>
+        </div>
+        <div class="skill-item">
+            <div class="skill-info"><span>C#</span><span>80%</span></div>
+            <div class="progress-bg"><div id="csharp-bar" class="skill-bar"></div></div>
+        </div>
+    </div>
 
     <div class="controls">
         <button class="theme-button" id="home-theme">1</button>
@@ -79,8 +75,6 @@
     </div>
 
     <audio id="background-music" src="assets/music.mp3" loop></audio>
-    <audio id="hacker-music" src="assets/hacker.mp3" loop></audio>
-
     <script src="script.js"></script>
 </body>
 </html>
