@@ -1,55 +1,477 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const profileBlock = document.getElementById('profile-block');
-    const skillsBlock = document.getElementById('skills-block');
-    const resultsBtn = document.getElementById('results-theme');
-    const startScreen = document.getElementById('start-screen');
-    const bgMusic = document.getElementById('background-music');
+let hasUserInteracted = false;
 
-    // Your exact bio text and typewriter logic [cite: 261]
-    const bioText = "Fu*k Guns.lol & Fakecrime.bio got banned too often, so I created my own.";
-    let i = 0;
-    function typeWriter() {
-        if (i < bioText.length) {
-            document.getElementById('profile-bio').innerHTML += bioText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-        }
+function initMedia() {
+  console.log("initMedia called");
+  const backgroundMusic = document.getElementById('background-music');
+  const backgroundVideo = document.getElementById('background');
+  if (!backgroundMusic || !backgroundVideo) {
+    console.error("Media elements not found");
+    return;
+  }
+  backgroundMusic.volume = 0.3;
+  backgroundVideo.muted = true; 
+
+  
+  backgroundVideo.play().catch(err => {
+    console.error("Failed to play background video:", err);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const startScreen = document.getElementById('start-screen');
+  const startText = document.getElementById('start-text');
+  const profileName = document.getElementById('profile-name');
+  const profileBio = document.getElementById('profile-bio');
+  const visitorCount = document.getElementById('visitor-count');
+  const backgroundMusic = document.getElementById('background-music');
+  const resultsButton = document.getElementById('results-theme');
+  const volumeIcon = document.getElementById('volume-icon');
+  const volumeSlider = document.getElementById('volume-slider');
+  const glitchOverlay = document.querySelector('.glitch-overlay');
+  const profileBlock = document.getElementById('profile-block');
+  const skillsBlock = document.getElementById('skills-block');
+  const pythonBar = document.getElementById('python-bar');
+  const javaBar = document.getElementById('java-bar');
+  const cssBar = document.getElementById('css3-bar');
+  const htmlBar = document.getElementById('html5-bar');
+  const javascriptBar = document.getElementById('javascript-bar');
+  const nodejsBar = document.getElementById('nodejs-bar');
+  const typescriptBar = document.getElementById('typescript-bar');
+  const csharpBar = document.getElementById('csharp-bar');
+  const resultsHint = document.getElementById('results-hint');
+  const profilePicture = document.querySelector('.profile-picture');
+  const profileContainer = document.querySelector('.profile-container');
+  const socialIcons = document.querySelectorAll('.social-icon');
+  const badges = document.querySelectorAll('.badge');
+
+
+
+
+  const cursor = document.querySelector('.custom-cursor');
+  const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
+  if (isTouchDevice) {
+    document.body.classList.add('touch-device');
+    
+    document.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      cursor.style.left = touch.clientX + 'px';
+      cursor.style.top = touch.clientY + 'px';
+      cursor.style.display = 'block';
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      cursor.style.left = touch.clientX + 'px';
+      cursor.style.top = touch.clientY + 'px';
+      cursor.style.display = 'block';
+    });
+
+    document.addEventListener('touchend', () => {
+      cursor.style.display = 'none'; 
+    });
+  } else {
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursor.style.display = 'block';
+    });
+
+    document.addEventListener('mousedown', () => {
+      cursor.style.transform = 'scale(0.8) translate(-50%, -50%)';
+    });
+
+    document.addEventListener('mouseup', () => {
+      cursor.style.transform = 'scale(1) translate(-50%, -50%)';
+    });
+  }
+
+  
+
+  const startMessages = ["Click here to see the Website!"];
+  const startMessage = startMessages[Math.floor(Math.random() * startMessages.length)];
+  let startTextContent = '';
+  let startIndex = 0;
+  let startCursorVisible = true;
+
+  function typeWriterStart() {
+    if (startIndex < startMessage.length) {
+      startTextContent = startMessage.slice(0, startIndex + 1);
+      startIndex++;
+    }
+    startText.textContent = startTextContent + (startCursorVisible ? '|' : ' ');
+    setTimeout(typeWriterStart, 100);
+  }
+
+
+  setInterval(() => {
+    startCursorVisible = !startCursorVisible;
+    startText.textContent = startTextContent + (startCursorVisible ? '|' : ' ');
+  }, 500);
+
+
+  function initializeVisitorCounter() {
+    totalVisitors = Math.floor(Math.random() * 900000) + 100000;
+    visitorCount.textContent = totalVisitors.toLocaleString();
+  }
+  
+  initializeVisitorCounter();
+
+  setInterval(initializeVisitorCounter, 10);
+
+  startScreen.addEventListener('click', () => {
+    startScreen.classList.add('hidden');
+    backgroundMusic.muted = false;
+    backgroundMusic.play().catch(err => {
+      console.error("Failed to play music after start screen click:", err);
+    });
+    profileBlock.classList.remove('hidden');
+    gsap.fromTo(profileBlock,
+      { opacity: 0, y: -50 },
+      { opacity: 1, y: 0, duration: 1, ease: 'power2.out', onComplete: () => {
+        profileBlock.classList.add('profile-appear');
+        profileContainer.classList.add('orbit');
+      }}
+    );
+    
+    typeWriterName();
+    typeWriterBio();
+  });
+
+  startScreen.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    startScreen.classList.add('hidden');
+    backgroundMusic.muted = false;
+    backgroundMusic.play().catch(err => {
+      console.error("Failed to play music after start screen touch:", err);
+    });
+    profileBlock.classList.remove('hidden');
+    gsap.fromTo(profileBlock,
+      { opacity: 0, y: -50 },
+      { opacity: 1, y: 0, duration: 1, ease: 'power2.out', onComplete: () => {
+        profileBlock.classList.add('profile-appear');
+        profileContainer.classList.add('orbit');
+      }}
+    );
+
+    typeWriterName();
+    typeWriterBio();
+  });
+
+
+  const names = [
+    "SIRRAMENBOI",
+  ];
+  let name = names[Math.floor(Math.random() * names.length)];
+  let nameText = '';
+  let nameIndex = 0;
+  let isNameDeleting = false;
+  let nameCursorVisible = true;
+
+  function typeWriterName() {
+    if (!isNameDeleting && nameIndex < name.length) {
+      nameText = name.slice(0, nameIndex + 1);
+      nameIndex++;
+    } else if (isNameDeleting && nameIndex > 0) {
+      nameText = name.slice(0, nameIndex - 1);
+      nameIndex--;
+    } else if (nameIndex === name.length) {
+      isNameDeleting = true;
+      setTimeout(typeWriterName, 2000);
+      return;
+    } else if (nameIndex === 0) {
+      isNameDeleting = false;
+      name = names[Math.floor(Math.random() * names.length)];
+    }
+    profileName.textContent = nameText + (nameCursorVisible ? '|' : ' ');
+    if (Math.random() < 0.1) {
+      profileName.classList.add('glitch');
+      setTimeout(() => profileName.classList.remove('glitch'), 200);
+    }
+    setTimeout(typeWriterName, isNameDeleting ? 50 : Math.floor(Math.random() * 101) + 30);
+  }
+
+  setInterval(() => {
+    nameCursorVisible = !nameCursorVisible;
+    profileName.textContent = nameText + (nameCursorVisible ? '|' : ' ');
+  }, 500);
+
+
+   const bioMessages = [
+    "Shadow Milk Cookie <3",
+    
+    "I love developing in Python, CSS, and JavaScript",
+    
+    "I Love playing CRK (CookieRun: Kingdom",
+    
+    "We do not lick the dog",
+    
+    "I am a person :)",
+  ];
+  let bioText = '';
+  let bioIndex = 0;
+  let bioMessageIndex = Math.floor(Math.random() * bioMessages.length);
+  let isBioDeleting = false;
+  let bioCursorVisible = true;
+
+  function typeWriterBio() {
+    if (!isBioDeleting && bioIndex < bioMessages[bioMessageIndex].length) {
+      bioText = bioMessages[bioMessageIndex].slice(0, bioIndex + 1);
+      bioIndex++;
+    } else if (isBioDeleting && bioIndex > 0) {
+      bioText = bioMessages[bioMessageIndex].slice(0, bioIndex - 1);
+      bioIndex--;
+    } else if (bioIndex === bioMessages[bioMessageIndex].length) {
+      isBioDeleting = true;
+      setTimeout(typeWriterBio, 2000);
+      return;
+    } else if (bioIndex === 0 && isBioDeleting) {
+      isBioDeleting = false;
+      bioMessageIndex = Math.floor(Math.random() * bioMessages.length);
     }
 
-    // Start Screen handler [cite: 318-320]
-    startScreen.addEventListener('click', () => {
-        gsap.to(startScreen, { opacity: 0, duration: 1, onComplete: () => {
-            startScreen.classList.add('hidden');
-            gsap.to(profileBlock, { opacity: 1, duration: 1 });
-            typeWriter();
-            bgMusic.play().catch(() => {});
-        }});
-    });
+    profileBio.textContent = bioText + (bioCursorVisible ? '|' : ' ');
 
-    // View Results Toggle Logic
-    let showingSkills = false;
-    resultsBtn.addEventListener('click', () => {
-        if (!showingSkills) {
-            gsap.to(profileBlock, { opacity: 0, scale: 0.9, duration: 0.5, onComplete: () => {
-                profileBlock.classList.add('hidden');
-                skillsBlock.classList.remove('hidden');
-                gsap.fromTo(skillsBlock, { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.5 });
-                
-                // Trigger Skill Bars [cite: 379-383]
-                document.getElementById('python-bar').style.width = "87%";
-                document.getElementById('cpp-bar').style.width = "15%";
-                document.getElementById('csharp-bar').style.width = "35%";
-            }});
-            showingSkills = true;
-            resultsBtn.innerText = "Back to Profile";
-        } else {
-            gsap.to(skillsBlock, { opacity: 0, scale: 0.9, duration: 0.5, onComplete: () => {
-                skillsBlock.classList.add('hidden');
-                profileBlock.classList.remove('hidden');
-                gsap.fromTo(profileBlock, { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.5 });
-            }});
-            showingSkills = false;
-            resultsBtn.innerText = "View Results";
-        }
+    if (Math.random() < 0.1) {
+      profileBio.classList.add('glitch');
+      setTimeout(() => profileBio.classList.remove('glitch'), 200);
+    }
+
+    setTimeout(typeWriterBio, isNameDeleting ? 20 : Math.floor(Math.random() * 101) + 30);
+}
+
+
+  setInterval(() => {
+    bioCursorVisible = !bioCursorVisible;
+    profileBio.textContent = bioText + (bioCursorVisible ? '|' : ' ');
+  }, 500);
+
+
+  let currentAudio = backgroundMusic;
+  let isMuted = false;
+
+  volumeIcon.addEventListener('click', () => {
+    isMuted = !isMuted;
+    currentAudio.muted = isMuted;
+    volumeIcon.innerHTML = isMuted
+      ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>`
+      : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>`;
+  });
+
+  volumeIcon.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    isMuted = !isMuted;
+    currentAudio.muted = isMuted;
+    volumeIcon.innerHTML = isMuted
+      ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>`
+      : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>`;
+  });
+
+  volumeSlider.addEventListener('input', () => {
+    currentAudio.volume = volumeSlider.value;
+    isMuted = false;
+    currentAudio.muted = false;
+    volumeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>`;
+  });
+ 
+  function handleTilt(e, element) {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    let clientX, clientY;
+
+    if (e.type === 'touchmove') {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+
+    const mouseX = clientX - centerX;
+    const mouseY = clientY - centerY;
+
+    const maxTilt = 15;
+    const tiltX = (mouseY / rect.height) * maxTilt;
+    const tiltY = -(mouseX / rect.width) * maxTilt;
+
+    gsap.to(element, {
+      rotationX: tiltX,
+      rotationY: tiltY,
+      duration: 0.3,
+      ease: 'power2.out',
+      transformPerspective: 1000
     });
+  }
+
+  profileBlock.addEventListener('mousemove', (e) => handleTilt(e, profileBlock));
+  profileBlock.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    handleTilt(e, profileBlock);
+  });
+
+  skillsBlock.addEventListener('mousemove', (e) => handleTilt(e, skillsBlock));
+  skillsBlock.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    handleTilt(e, skillsBlock);
+  });
+
+  profileBlock.addEventListener('mouseleave', () => {
+    gsap.to(profileBlock, {
+      rotationX: 0,
+      rotationY: 0,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  });
+  profileBlock.addEventListener('touchend', () => {
+    gsap.to(profileBlock, {
+      rotationX: 0,
+      rotationY: 0,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  });
+
+  skillsBlock.addEventListener('mouseleave', () => {
+    gsap.to(skillsBlock, {
+      rotationX: 0,
+      rotationY: 0,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  });
+  skillsBlock.addEventListener('touchend', () => {
+    gsap.to(skillsBlock, {
+      rotationX: 0,
+      rotationY: 0,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  });
+
+
+  profilePicture.addEventListener('click', () => {
+    profileContainer.classList.remove('fast-orbit');
+    profileContainer.classList.remove('orbit');
+    void profileContainer.offsetWidth;
+    profileContainer.classList.add('fast-orbit');
+    setTimeout(() => {
+      profileContainer.classList.remove('fast-orbit');
+      void profileContainer.offsetWidth;
+      profileContainer.classList.add('orbit');
+    }, 500);
+  });
+
+  profilePicture.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    profileContainer.classList.remove('fast-orbit');
+    profileContainer.classList.remove('orbit');
+    void profileContainer.offsetWidth;
+    profileContainer.classList.add('fast-orbit');
+    setTimeout(() => {
+      profileContainer.classList.remove('fast-orbit');
+      void profileContainer.offsetWidth;
+      profileContainer.classList.add('orbit');
+    }, 500);
+  });
+
+ 
+  let isShowingSkills = false;
+  resultsButton.addEventListener('click', () => {
+    if (!isShowingSkills) {
+      gsap.to(profileBlock, {
+        x: -100,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.in',
+        onComplete: () => {
+          profileBlock.classList.add('hidden');
+          skillsBlock.classList.remove('hidden');
+          gsap.fromTo(skillsBlock,
+            { x: 100, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
+          );
+          gsap.to(pythonBar, { width: '95%', duration: 2, ease: 'power2.out' });
+          gsap.to(javaBar, { width: '35%', duration: 2, ease: 'power2.out' });
+          gsap.to(cssBar, { width: '70%', duration: 2, ease: 'power2.out' });
+          gsap.to(htmlBar, { width: '65%', duration: 2, ease: 'power2.out' });
+          gsap.to(javascriptBar, { width: '75%', duration: 2, ease: 'power2.out' });
+          gsap.to(nodejsBar, { width: '70%', duration: 2, ease: 'power2.out' });
+          gsap.to(typescriptBar, { width: '75%', duration: 2, ease: 'power2.out' });
+          gsap.to(csharpBar, { width: '100%', duration: 2, ease: 'power2.out' });
+        }
+      });
+      resultsHint.classList.remove('hidden');
+      isShowingSkills = true;
+    } else {
+      gsap.to(skillsBlock, {
+        x: 100,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.in',
+        onComplete: () => {
+          skillsBlock.classList.add('hidden');
+          profileBlock.classList.remove('hidden');
+          gsap.fromTo(profileBlock,
+            { x: -100, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
+          );
+        }
+      });
+      resultsHint.classList.add('hidden');
+      isShowingSkills = false;
+    }
+  });
+
+  resultsButton.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (!isShowingSkills) {
+      gsap.to(profileBlock, {
+        x: -100,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.in',
+        onComplete: () => {
+          profileBlock.classList.add('hidden');
+          skillsBlock.classList.remove('hidden');
+          gsap.fromTo(skillsBlock,
+            { x: 100, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
+          );
+          gsap.to(pythonBar, { width: '95%', duration: 2, ease: 'power2.out' });
+          gsap.to(javaBar, { width: '35%', duration: 2, ease: 'power2.out' });
+          gsap.to(cssBar, { width: '70%', duration: 2, ease: 'power2.out' });
+          gsap.to(htmlBar, { width: '65%', duration: 2, ease: 'power2.out' });
+          gsap.to(javascriptBar, { width: '75%', duration: 2, ease: 'power2.out' });
+          gsap.to(nodejsBar, { width: '70%', duration: 2, ease: 'power2.out' });
+          gsap.to(typescriptBar, { width: '75%', duration: 2, ease: 'power2.out' });
+          gsap.to(csharpBar, { width: '100%', duration: 2, ease: 'power2.out' });
+        }
+      });
+      resultsHint.classList.remove('hidden');
+      isShowingSkills = true;
+    } else {
+      gsap.to(skillsBlock, {
+        x: 100,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.in',
+        onComplete: () => {
+          skillsBlock.classList.add('hidden');
+          profileBlock.classList.remove('hidden');
+          gsap.fromTo(profileBlock,
+            { x: -100, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
+          );
+        }
+      });
+      resultsHint.classList.add('hidden');
+      isShowingSkills = false;
+    }
+  });
+
+
+  typeWriterStart();
 });
