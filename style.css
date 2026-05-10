@@ -13,7 +13,7 @@ body {
     cursor: none;
 }
 
-/* Background Video */
+/* Background Media */
 #background {
     position: fixed;
     top: 0;
@@ -24,18 +24,18 @@ body {
     z-index: -1;
 }
 
-/* Glass Panels */
+/* Containers */
 .glass-panel {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     border: 1px solid var(--primary-color);
     padding: 30px;
     border-radius: 20px;
-    width: 600px;
+    width: 640px;
     max-width: 90vw;
     text-align: center;
     z-index: 20;
@@ -43,10 +43,29 @@ body {
 
 .hidden { display: none !important; }
 
-/* Toggle Button Styling */
+/* FIX GIANT ICONS */
+.social-icon img {
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: contain;
+}
+
+.badge {
+    width: 22px !important;
+    height: 22px !important;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+}
+
+/* Toggle Button */
 #results-button-container {
     position: fixed;
-    top: 5%;
+    top: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
@@ -56,51 +75,21 @@ body {
     background: transparent;
     border: 1px solid var(--primary-color);
     color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 10px 25px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: 0.3s;
+    font-family: inherit;
 }
 
-#results-theme:hover {
-    background: var(--primary-color);
-    box-shadow: 0 0 15px var(--primary-color);
-}
-
-/* Progress Bars */
-.progress-bg {
-    background: rgba(255, 255, 255, 0.1);
-    height: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
-.skill-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-}
-
-/* Theme specific overrides */
+/* Themes */
 body.hacker-theme { --primary-color: #22C55E; }
 body.rain-theme { --primary-color: #1E3A8A; }
+body.anime-theme { --primary-color: #DC2626; }
+body.car-theme { --primary-color: #EAB308; }
 
-/* Bottom Controls */
-.controls {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
+/* Progress Bars */
+.progress-bg { background: rgba(255, 255, 255, 0.1); height: 8px; border-radius: 4px; margin: 10px 0; }
+.skill-bar { height: 100%; background: var(--primary-color); width: 0; transition: width 2s ease; }
 
-.theme-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid white;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    cursor: pointer;
-}
+.controls { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; }
+.theme-button { width: 35px; height: 35px; border-radius: 50%; background: rgba(0,0,0,0.5); border: 1px solid white; color: white; cursor: pointer; }
