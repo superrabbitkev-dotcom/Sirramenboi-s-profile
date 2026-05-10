@@ -19,15 +19,15 @@ body {
   cursor: none;
 }
 
-/* FIX: Force correct sizes for icons */
+/* FIX: Keeping your icons at the size specified in your original code */
+.social-icon {
+  width: 36px !important; 
+  height: 36px !important;
+}
+
 .badge {
   width: 22px !important;
   height: 22px !important;
-}
-
-.social-icon {
-  width: 36px !important;
-  height: 36px !important;
 }
 
 .profile-picture {
@@ -36,7 +36,7 @@ body {
   border-radius: 50%;
 }
 
-/* Layout */
+/* Block Styles */
 #profile-block, #skills-block {
   position: fixed;
   top: 50%;
@@ -53,16 +53,12 @@ body {
 
 .hidden { display: none !important; }
 
-/* Themes */
-body.home-theme { --primary-color: #00CED1; --cursor-hue: 180deg; }
-body.hacker-theme { --primary-color: #22C55E; --cursor-hue: 120deg; }
-
-/* Skill Bars */
+/* Skill Bars [cite: 386-388] */
 .skill-bar-container { height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; }
 .skill-bar { height: 100%; width: 0%; transition: width 2s; }
 #python-bar { background: linear-gradient(90deg, #ff6b6b, #ff9f9f); }
 #cpp-bar { background: linear-gradient(90deg, #4facfe, #00f2fe); }
 
-/* Results Button */
+/* Results Toggle Style [cite: 290-293] */
 #results-button-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 100; }
 #results-theme { background: rgba(0,0,0,0.7); color: white; border: 1px solid white; padding: 8px 15px; border-radius: 20px; cursor: pointer; }
