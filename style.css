@@ -1,95 +1,66 @@
 :root {
-    --primary-color: #00CED1;
-    --secondary-color: #FF6B9E;
-    --background-dark: #0A0A1A;
+  --primary-color: #00CED1;
+  --secondary-color: #FF6B9E;
+  --background-dark: #0A0A1A;
+  --text-color: #E0E0FF;
 }
 
 body {
-    font-family: 'Space Mono', monospace;
-    background: var(--background-dark);
-    color: #E0E0FF;
-    margin: 0;
-    overflow: hidden;
-    cursor: none;
+  font-family: 'Space Mono', monospace;
+  background: var(--background-dark);
+  color: var(--text-color);
+  overflow: hidden;
+  cursor: none;
 }
 
-/* Background Media */
-#background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+/* --- THE FIX FOR THE GIANT ICON BUG --- */
+.social-icon {
+  width: 32px !important; /* Force original size from your code */
+  height: 32px !important;
+  object-fit: contain;
 }
 
-/* Containers */
-.glass-panel {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--primary-color);
-    padding: 30px;
-    border-radius: 20px;
-    width: 640px;
-    max-width: 90vw;
-    text-align: center;
-    z-index: 20;
+.badge {
+  width: 22px !important;
+  height: 22px !important;
+  object-fit: contain;
+}
+
+.profile-picture {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50%;
+}
+
+/* --- YOUR ORIGINAL POSITIONING --- */
+#profile-block, #skills-block {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 820px;
+  max-width: 90vw;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  z-index: 20;
 }
 
 .hidden { display: none !important; }
 
-/* FIX GIANT ICONS */
-.social-icon img {
-    width: 30px !important;
-    height: 30px !important;
-    object-fit: contain;
-}
+/* --- YOUR THEMES --- */
+body.home-theme { --primary-color: #00CED1; --cursor-hue: 180deg; }
+body.hacker-theme { --primary-color: #22C55E; --cursor-hue: 120deg; }
+body.rain-theme { --primary-color: #1E3A8A; --cursor-hue: 240deg; }
 
-.badge {
-    width: 22px !important;
-    height: 22px !important;
-}
+/* Skill Bars */
+.skill-bar-container { height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; }
+.skill-bar { height: 100%; border-radius: 5px; width: 0%; transition: width 2s; }
+#python-bar { background: linear-gradient(90deg, #ff6b6b, #ff9f9f); }
+#cpp-bar { background: linear-gradient(90deg, #4facfe, #00f2fe); }
 
-.profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid var(--primary-color);
-}
-
-/* Toggle Button */
-#results-button-container {
-    position: fixed;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-}
-
-#results-theme {
-    background: transparent;
-    border: 1px solid var(--primary-color);
-    color: white;
-    padding: 10px 25px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-/* Themes */
-body.hacker-theme { --primary-color: #22C55E; }
-body.rain-theme { --primary-color: #1E3A8A; }
-body.anime-theme { --primary-color: #DC2626; }
-body.car-theme { --primary-color: #EAB308; }
-
-/* Progress Bars */
-.progress-bg { background: rgba(255, 255, 255, 0.1); height: 8px; border-radius: 4px; margin: 10px 0; }
-.skill-bar { height: 100%; background: var(--primary-color); width: 0; transition: width 2s ease; }
-
-.controls { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; }
-.theme-button { width: 35px; height: 35px; border-radius: 50%; background: rgba(0,0,0,0.5); border: 1px solid white; color: white; cursor: pointer; }
+/* Results Toggle Style */
+#results-button-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 100; }
+#results-theme { background: rgba(0,0,0,0.7); color: white; border: 1px solid white; padding: 8px 15px; border-radius: 20px; cursor: pointer; }
