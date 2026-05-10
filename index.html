@@ -1,74 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sirramenboi's Profile</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Retro+Gaming&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body class="home-theme">
     <div class="custom-cursor"></div>
 
-    <video id="background" autoplay loop muted playsinline>
+    <video id="background" autoplay loop muted playsinline class="video-background">
         <source src="assets/background.mp4" type="video/mp4">
     </video>
 
     <div id="results-button-container">
         <button id="results-theme">View Results</button>
-        <div id="results-hint" class="hidden">Click again to return to profile</div>
+        <p id="results-hint" class="hidden">Click again to return to profile</p>
     </div>
 
-    <div id="profile-block">
-        <div class="profile-header">
-            <div class="profile-container">
-                <img src="assets/profile.gif" alt="Profile" class="profile-picture">
-            </div>
-            <div class="profile-info">
-                <div class="name-and-badges">
-                    <div id="profile-name">Sirramenboi</div>
-                    <div class="badge-box">
-                        <div class="badge-box-inner">
-                            <div class="badge-group">
-                                <div class="badge-container"><img src="assets/staff.gif" class="badge"><span class="tooltip">Idk what you expected lol</span></div>
-                                <div class="badge-container"><img src="assets/owner.gif" class="badge"><span class="tooltip">Owner</span></div>
-                                <div class="badge-container"><img src="assets/partner.gif" class="badge"><span class="tooltip">Idk man</span></div>
-                                <div class="badge-container"><img src="assets/developer.png" class="badge"><span class="tooltip">Developer</span></div>
-                                <div class="badge-container"><img src="assets/bug_bounty.gif" class="badge"><span class="tooltip">Oops! you encountered a bug.</span></div>
-                                <div class="badge-container"><img src="assets/hated_guns.gif" class="badge"><span class="tooltip">Love using python to code</span></div>
-                                <div class="badge-container"><img src="assets/hated_fakecrime.gif" class="badge"><span class="tooltip">SHADOW MILK COOKIE</span></div>
-                                <div class="badge-container"><img src="assets/verified.gif" class="badge"><span class="tooltip">Verified</span></div>
-                                <div class="badge-container"><img src="assets/rule_maker.gif" class="badge"><span class="tooltip">Rule Maker</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="profile-bio"></div>
+    <div id="profile-block" class="profile-appear">
+        <div class="profile-container">
+            <img src="assets/profile.gif" alt="Profile" class="profile-picture">
+        </div>
+        
+        <div class="name-and-badges">
+            <h1 id="profile-name" class="name-gradient">Sirramenboi</h1>
+            <div class="badge-group">
+                <div class="badge-container"><img src="assets/staff.gif" class="badge"><span class="tooltip">Idk what you expected lol</span></div>
+                <div class="badge-container"><img src="assets/owner.gif" class="badge"><span class="tooltip">Owner</span></div>
+                <div class="badge-container"><img src="assets/partner.gif" class="badge"><span class="tooltip">Idk man</span></div>
+                <div class="badge-container"><img src="assets/developer.png" class="badge"><span class="tooltip">Developer</span></div>
+                <div class="badge-container"><img src="assets/bug_bounty.gif" class="badge"><span class="tooltip">Oops! bug encountered.</span></div>
+                <div class="badge-container"><img src="assets/hated_guns.gif" class="badge"><span class="tooltip">Love using python to code</span></div>
+                <div class="badge-container"><img src="assets/hated_fakecrime.gif" class="badge"><span class="tooltip">SHADOW MILK COOKIE</span></div>
+                <div class="badge-container"><img src="assets/verified.gif" class="badge"><span class="tooltip">Verified</span></div>
+                <div class="badge-container"><img src="assets/rule_maker.gif" class="badge"><span class="tooltip">Rule Maker</span></div>
             </div>
         </div>
-        <div class="bio-separator"></div>
-        <div class="profile-footer">
-            <div class="social-links">
-                <a href="https://discord.gg/9S7k85tuk9" target="_blank"><img src="assets/discord.png" class="social-icon"></a>
-                <a href="https://github.com/superrabbitkev-dotcom" target="_blank"><img src="assets/github.png" class="social-icon"></a>
-                <a href="https://www.youtube.com/channel/UCSgdP2jS5p9-8k5UTwUyNDA" target="_blank"><img src="assets/youtube.png" class="social-icon"></a>
-            </div>
-            <div class="visitor-counter">
-                <span id="visitor-count">21234</span>
-            </div>
+
+        <p id="profile-bio"></p>
+
+        <div class="social-links">
+            <a href="https://discord.gg/9S7k85tuk9" target="_blank" class="social-icon"><img src="assets/discord.png"></a>
+            <a href="https://github.com/superrabbitkev-dotcom" target="_blank" class="social-icon"><img src="assets/github.png"></a>
+            <a href="https://www.youtube.com/channel/UCSgdP2jS5p9-8k5UTwUyNDA" target="_blank" class="social-icon"><img src="assets/youtube.png"></a>
+        </div>
+
+        <div class="visitor-counter">
+            <span id="visitor-count">21234</span>
         </div>
     </div>
 
     <div id="skills-block" class="hidden">
-        <h2 class="skills-title">Programming Skills</h2>
-        <div class="skill">
-            <div class="skill-name"><img src="assets/python.png" class="skill-icon"><span>Python</span><span>87%</span></div>
-            <div class="skill-bar-container"><div id="python-bar" class="skill-bar"></div></div>
+        <h2 class="skill-title">Programming Skills</h2>
+        <div class="skill-item">
+            <span>Python</span>
+            <div class="progress-bg"><div id="python-bar" class="skill-bar"></div></div>
         </div>
-        <div class="skill">
-            <div class="skill-name"><img src="assets/cpp.png" class="skill-icon"><span>C++</span><span>15%</span></div>
-            <div class="skill-bar-container"><div id="cpp-bar" class="skill-bar"></div></div>
+        <div class="skill-item">
+            <span>C++</span>
+            <div class="progress-bg"><div id="cpp-bar" class="skill-bar"></div></div>
         </div>
     </div>
 
