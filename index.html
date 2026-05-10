@@ -1,71 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sirramenboi's Profile</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-</head>
-<body class="home-theme">
-    <div class="custom-cursor"></div>
+:root {
+  --primary-color: #00CED1;
+  --secondary-color: #FF6B9E;
+  --background-dark: #0A0A1A;
+  --text-color: #E0E0FF;
+}
 
-    <video id="background" autoplay loop muted playsinline class="video-background">
-        <source src="assets/background.mp4" type="video/mp4">
-    </video>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <div id="results-button-container">
-        <button id="results-theme">View Results</button>
-        <p id="results-hint" class="hidden">Click again to return to profile</p>
-    </div>
+body {
+  font-family: 'Space Mono', monospace;
+  background: var(--background-dark);
+  color: var(--text-color);
+  overflow: hidden;
+  cursor: none;
+}
 
-    <div id="profile-block" class="profile-appear">
-        <div class="profile-container">
-            <img src="assets/profile.gif" alt="Profile" class="profile-picture">
-        </div>
-        
-        <div class="name-and-badges">
-            <h1 id="profile-name" class="name-gradient">Sirramenboi</h1>
-            <div class="badge-group">
-                <div class="badge-container"><img src="assets/staff.gif" class="badge"><span class="tooltip">Idk what you expected lol</span></div>
-                <div class="badge-container"><img src="assets/owner.gif" class="badge"><span class="tooltip">Owner</span></div>
-                <div class="badge-container"><img src="assets/partner.gif" class="badge"><span class="tooltip">Idk man</span></div>
-                <div class="badge-container"><img src="assets/developer.png" class="badge"><span class="tooltip">Developer</span></div>
-                <div class="badge-container"><img src="assets/bug_bounty.gif" class="badge"><span class="tooltip">Oops! bug encountered.</span></div>
-                <div class="badge-container"><img src="assets/hated_guns.gif" class="badge"><span class="tooltip">Love using python to code</span></div>
-                <div class="badge-container"><img src="assets/hated_fakecrime.gif" class="badge"><span class="tooltip">SHADOW MILK COOKIE</span></div>
-                <div class="badge-container"><img src="assets/verified.gif" class="badge"><span class="tooltip">Verified</span></div>
-                <div class="badge-container"><img src="assets/rule_maker.gif" class="badge"><span class="tooltip">Rule Maker</span></div>
-            </div>
-        </div>
+/* FIX: Force correct sizes for icons */
+.badge {
+  width: 22px !important;
+  height: 22px !important;
+}
 
-        <p id="profile-bio"></p>
+.social-icon {
+  width: 36px !important;
+  height: 36px !important;
+}
 
-        <div class="social-links">
-            <a href="https://discord.gg/9S7k85tuk9" target="_blank" class="social-icon"><img src="assets/discord.png"></a>
-            <a href="https://github.com/superrabbitkev-dotcom" target="_blank" class="social-icon"><img src="assets/github.png"></a>
-            <a href="https://www.youtube.com/channel/UCSgdP2jS5p9-8k5UTwUyNDA" target="_blank" class="social-icon"><img src="assets/youtube.png"></a>
-        </div>
+.profile-picture {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50%;
+}
 
-        <div class="visitor-counter">
-            <span id="visitor-count">21234</span>
-        </div>
-    </div>
+/* Layout */
+#profile-block, #skills-block {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 820px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  z-index: 20;
+}
 
-    <div id="skills-block" class="hidden">
-        <h2 class="skill-title">Programming Skills</h2>
-        <div class="skill-item">
-            <span>Python</span>
-            <div class="progress-bg"><div id="python-bar" class="skill-bar"></div></div>
-        </div>
-        <div class="skill-item">
-            <span>C++</span>
-            <div class="progress-bg"><div id="cpp-bar" class="skill-bar"></div></div>
-        </div>
-    </div>
+.hidden { display: none !important; }
 
-    <audio id="background-music" src="assets/background_music.mp3" loop></audio>
-    <script src="script.js"></script>
-</body>
-</html>
+/* Themes */
+body.home-theme { --primary-color: #00CED1; --cursor-hue: 180deg; }
+body.hacker-theme { --primary-color: #22C55E; --cursor-hue: 120deg; }
+
+/* Skill Bars */
+.skill-bar-container { height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; }
+.skill-bar { height: 100%; width: 0%; transition: width 2s; }
+#python-bar { background: linear-gradient(90deg, #ff6b6b, #ff9f9f); }
+#cpp-bar { background: linear-gradient(90deg, #4facfe, #00f2fe); }
+
+/* Results Button */
+#results-button-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 100; }
+#results-theme { background: rgba(0,0,0,0.7); color: white; border: 1px solid white; padding: 8px 15px; border-radius: 20px; cursor: pointer; }
